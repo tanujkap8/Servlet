@@ -47,11 +47,18 @@ public class Main3 extends HttpServlet {
             ps.setString(1, blogID);
             ps.setString(2, blogContent);
             ps.setString(3, username);
-            ps.executeUpdate();
-            out.println("Your blog has been successfully added!");
-            out.println("<h4>blogID<h4>"+blogID);
-            out.println("<h4>blogContent<h4>"+blogContent);
-            out.println("<h4>username<h4>"+username);
+            if(blogID.isEmpty() | blogContent.isEmpty())
+            {
+                out.println("Your blog has been unsuccessfully added!");
+            }
+            else {
+                ps.executeUpdate();
+
+                out.println("Your blog has been successfully added!");
+                out.println("<h4>blogID<h4>" + blogID);
+                out.println("<h4>blogContent<h4>" + blogContent);
+                out.println("<h4>username<h4>" + username);
+            }
         }
         catch(Exception e)
         {
